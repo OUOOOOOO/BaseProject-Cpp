@@ -40,4 +40,8 @@ public class SystemInfo {
             System.out.println(s);
         }
     }
+    
+    public Map<String, Store> getListStore() {
+    	return listStore;
+    }
 }

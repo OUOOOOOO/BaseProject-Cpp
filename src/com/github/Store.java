@@ -4,9 +4,16 @@ import java.util.Map;
 
 public class Store {
 
-    private String storeID;
-    private String name;
-    private int location;
+    private String storeID; //ID
+    private String name;    //名稱
+    private String foodtype;//食物類別
+    private int price;      //價格
+    private int vote;       //評價
+    private int location;   //距離
+    private String Business_Hours; //營業時間
+    private String Meal_time;      //取餐時間間隔
+    private int seats;             //最大內用人數
+    
     
     private Map<String, Integer> listMenu;
     
