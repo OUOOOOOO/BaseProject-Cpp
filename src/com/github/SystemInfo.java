@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ��T�\��
+ * �j�M�\��
  * @author Admin
  *
  */
@@ -19,9 +19,9 @@ public class SystemInfo {
     }
     
     public void init() {
-        new Store("A01", "便利商店", 100);
-        new Store("A11", "牛肉麵", 150);
-        new Store("B55", "飲料店", -100);
+        new Store("A01", "TEST1", 100);
+        new Store("A11", "TEST2", 150);
+        new Store("B55", "TEST3", -100);
     }
     
     public void addStore(Store a) {
