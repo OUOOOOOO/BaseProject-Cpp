@@ -56,6 +56,30 @@ public class Store {
     public void setLocation(int location) {
         this.location = location;
     }
+    
+    public void setFoodtype(String foodtype) {
+    	this.foodtype = foodtype;
+    }
+    
+    public String getFoodtype() {
+    	return foodtype;
+    }
+    
+    public void setVote(int vote) {
+    	this.vote = vote;
+    }
+    
+    public int getVote() {
+    	return vote;
+    }
+    
+    public void setPrice(int price) {
+    	this.price = price;
+    }
+    
+    public int getPrice() {
+    	return price;
+    }
 
     @Override
     public String toString() {
