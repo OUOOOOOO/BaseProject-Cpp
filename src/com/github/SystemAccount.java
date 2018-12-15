@@ -12,17 +12,20 @@ public class SystemAccount {
 	private String user = null;
 	private String password = null;
 	private boolean controller = true;
+	private static String filePath = "C:\\Users\\Tinny\\Desktop\\test"; //Default path
+	private final String userAccount = "userAccount.txt";
 	
 	public SystemAccount(String user, String passwd) {
 		
 		if(controller == true) {
 			
-			if(user.length() > 4 && user.length() < 16 ) {
+			if(user.length() >= 4 && user.length() < 16 ) {
 				
 				if(passwd.length() >= 6 && passwd.length() < 18) {
 					
 					this.user = user;
 					this.password = passwd;
+					this.storeUserAccount(user, passwd, filePath);
 					this.controller = false;
 					
 				}
@@ -62,7 +65,7 @@ public class SystemAccount {
 		
 		if(controller == true) {
 			
-			if(user.length() > 4 && user.length() < 16 ) {
+			if(user.length() >= 4 && user.length() < 16 ) {
 				
 				this.user = user;
 			
@@ -122,6 +125,29 @@ public class SystemAccount {
 		
 	}
 	
+	public void storeUserAccount(String storedUser, String storedPasswd, String filePath) {
+		
+		File file = new File(filePath + "\\" + userAccount);
+		
+		try {
+			
+			FileWriter write = new FileWriter(file, true);
+			write.write(user + ", " + password + "\n");
+			write.close();
+			
+		}
+		
+		catch (Exception e) {
+			
+			e.printStackTrace();
+			System.out.println("Error: Invalid destination");
+			
+		}
+		
+		
+		
+	}//output to .txt file for store information
+	
 	public String toString() {
 		
 		return ("User Name : " + user);
@@ -130,7 +156,8 @@ public class SystemAccount {
 	
 	public static void main(String[] args) {
 		
-		
+		SystemAccount user_1 = new SystemAccount("Perry", "123546789");
+		SystemAccount user_2 = new SystemAccount("Alex", "12354567");
 		
 	}
 	
