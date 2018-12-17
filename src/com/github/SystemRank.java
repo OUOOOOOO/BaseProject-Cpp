@@ -33,7 +33,7 @@ public class SystemRank {
     	getfrank();
     	showfrank();
     	searchShop();
-    	System.out.println("Finish.");
+    	//System.out.println("Finish.");
     }
     
     public void getftype() {
