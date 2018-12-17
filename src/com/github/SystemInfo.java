@@ -19,9 +19,9 @@ public class SystemInfo {
     }
     
     public void init() {
-        new Store("A01", "TEST1", 100);
-        new Store("A11", "TEST2", 150);
-        new Store("B55", "TEST3", -100);
+        new Store("A01", "TEST1", 100, "rice", 50, 4.7);
+        new Store("A11", "TEST2", 150, "noodle", 80, 4);
+        new Store("B55", "TEST3", -100, "rice", 60, 3.85);
     }
     
     public void addStore(Store a) {

@@ -8,7 +8,7 @@ public class Store {
     private String name;    //名稱
     private String foodtype;//食物類別
     private int price;      //價格
-    private int vote;       //評價
+    private double vote;       //評價
     private int location;   //距離
     private String Business_Hours; //營業時間
     private String Meal_time;      //取餐時間間隔
@@ -17,10 +17,13 @@ public class Store {
     
     private Map<String, Integer> listMenu;
     
-    public Store(String storeID, String name, int location) {
+    public Store(String storeID, String name, int location, String foodtype, int price, double vote) {
         this.storeID = storeID;
         this.name = name;
         this.location = location;
+        this.foodtype = foodtype;
+        this.price = price;
+        this.vote = vote;
         
         addList();
     }
@@ -65,11 +68,11 @@ public class Store {
     	return foodtype;
     }
     
-    public void setVote(int vote) {
+    public void setVote(double vote) {
     	this.vote = vote;
     }
     
-    public int getVote() {
+    public double getVote() {
     	return vote;
     }
     

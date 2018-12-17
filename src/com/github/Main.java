@@ -1,11 +1,14 @@
 package com.github;
 
+import java.util.Map;
+
 public class Main {
     
     private static Main instance;
     
     public SystemInfo systemInfo;
     public SystemSearch systemSearch;
+    public SystemRank systemRank;
     
     public static Main getInstance() {
         return instance;
@@ -30,6 +33,10 @@ public class Main {
         
         systemSearch = new SystemSearch(systemInfo.getListStore());
         systemSearch.Search();
+        systemRank = new SystemRank(systemInfo.getListStore());
+        systemRank.getRanking();
+        
     }
+
 
 }
