@@ -33,9 +33,9 @@ public class Main {
         
         systemSearch = new SystemSearch(systemInfo.getListStore());
         systemSearch.Search();
+        
         systemRank = new SystemRank(systemInfo.getListStore());
         systemRank.getRanking();
-        
     }
 
 
