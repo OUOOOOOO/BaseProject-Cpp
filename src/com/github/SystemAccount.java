@@ -229,17 +229,21 @@ public class SystemAccount {
 			
 			if(checkPath.hasNextLine()) {
 				
-				checkPoint = checkPath.next();
-				token = new StringTokenizer(checkPoint);
-				
-				while(token.hasMoreTokens()) {
+				while(checkPath.hasNext()) {
 					
-					if(token.nextToken().equals(user + ",")) {
+					checkPoint = checkPath.next();
+					token = new StringTokenizer(checkPoint);
+					
+					while(token.hasMoreTokens()) {
 						
-						this.checktheSame = false;
-					
-					} 
-					
+						if(token.nextToken().equals(user + ",")) {
+							
+							this.checktheSame = false;
+						
+						}
+						
+					}
+				
 				}
 				
 			}
@@ -287,7 +291,7 @@ public class SystemAccount {
 		
 	}
 	
-	public static void main(String[] args) {
+	/*public void main() {
 		
 		String inputUser = null, inputPasswd = null;
 		Scanner scan = new Scanner(System.in);
@@ -295,6 +299,7 @@ public class SystemAccount {
 		int i = 1;
 		boolean control = false;
 		String controller;
+		
 		
 			do {
 				
@@ -322,6 +327,6 @@ public class SystemAccount {
 			
 			}while(control == true);
 			
-	}
+	}*/
 	
 }

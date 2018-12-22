@@ -5,7 +5,7 @@ import java.util.Map;
 public class Main {
     
     private static Main instance;
-    
+    public SystemManage systemManage;
     public SystemInfo systemInfo;
     public SystemSearch systemSearch;
     public SystemRank systemRank;
@@ -30,6 +30,9 @@ public class Main {
         systemInfo.init();
         
         systemInfo.showStore();
+        
+        systemManage = new SystemManage();
+        systemManage.login();
         
         systemSearch = new SystemSearch(systemInfo.getListStore());
         systemSearch.Search();
