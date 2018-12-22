@@ -5,7 +5,7 @@ import java.util.*;
 
 /**
  * ±b¤á¨t²Î
- * @author Perry
+ * @author admin 
  *
  */
 public class SystemAccount {
@@ -13,7 +13,7 @@ public class SystemAccount {
 	private String user = null;
 	private String password = null;
 	private boolean controller = true;
-	private boolean checktheSame = false;
+	private boolean checktheSame = true;
 	private static String filePath = "C:\\test"; //Default path
 	private final String userAccount = "userAccount.txt";
 	
@@ -25,21 +25,22 @@ public class SystemAccount {
 				
 				if(passwd.length() >= 6 && passwd.length() < 18) {
 					
-					this.checkFileExist();
+					this.checkFileExist();					
+					this.user = user;
+					this.password = passwd;
+					this.checkUserExist();
 					
-					if(this.checkUserExist() == false) {// fix problems
-					
-						this.user = user;
-						this.password = passwd;
+					if(checktheSame == true) {
+							
 						this.storeUserAccount(user, passwd, filePath);
 						this.controller = false;
-					
+						
 					}
-					
+						
 					else {
-						
-						System.out.println("Error: the User is already exist");
-						
+							
+						System.out.println("Error: the UserName has been create");
+							
 					}
 					
 				}
@@ -145,6 +146,8 @@ public class SystemAccount {
 		
 		if(dir.exists() == false) {
 			
+			System.out.println("Error: Folder is not exist");
+			System.out.println("(System is create one automatically)");
 			dir.mkdir();
 			
 		}//check for dir whether exist
@@ -226,22 +229,34 @@ public class SystemAccount {
 			
 			if(checkPath.hasNextLine()) {
 				
-				checkPoint = checkPath.nextLine();
-				token = new StringTokenizer(checkPoint, ",");
+				checkPoint = checkPath.next();
+				token = new StringTokenizer(checkPoint);
+				
+				while(token.hasMoreTokens()) {
+					
+					if(token.nextToken().equals(user + ",")) {
+						
+						this.checktheSame = false;
+					
+					} 
+					
+				}
 				
 			}
 			
 			else {
 				
 				System.out.println("Error: the file is empty");
+				System.out.println("Please try input again.");
 				
 				File junk = new	File(filePath + "\\" + userAccount);
 				
 				try {
 					
 					FileWriter write = new FileWriter(junk, true);
-					write.write(user + ", " + password + "\n");
+					write.write("UserName" + ", " + "Password" + " :\n");
 					write.close();
+					System.exit(0);
 					
 				}
 				
@@ -252,23 +267,13 @@ public class SystemAccount {
 					
 				}
 				
-			}
+			} // end of checkEmpty
 			
 		}
 		
 		catch(FileNotFoundException e) {
 			
 			e.printStackTrace();
-			
-		}
-		
-		while(token.hasMoreTokens()) {
-			
-			if(token.nextToken().equals(user)) {
-				
-				this.checktheSame = true;
-			
-			}
 			
 		}
 		
@@ -288,8 +293,9 @@ public class SystemAccount {
 		Scanner scan = new Scanner(System.in);
 		SystemAccount[] user_ = new SystemAccount[100];
 		int i = 1;
-		boolean control = true;
-			
+		boolean control = false;
+		String controller;
+		
 			do {
 				
 				System.out.print("Please Enter Your Username >> ");
@@ -299,7 +305,20 @@ public class SystemAccount {
 				user_[i] = new SystemAccount(inputUser, inputPasswd);
 				System.out.println("Do you want to contiune input data?");
 				System.out.print("(Yes/No) >> ");
-				control = false;// ..... 
+				controller = scan.nextLine();
+				controller = controller.toLowerCase();
+				
+				if(controller.equals("yes") || controller.equals("y")) {
+					
+					control = true;
+					
+				}
+				
+				else if(controller.equals("no") || controller.equals("n")) {
+					
+					control = false;
+					
+				}
 			
 			}while(control == true);
 			
