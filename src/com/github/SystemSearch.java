@@ -74,6 +74,10 @@ public class SystemSearch {
 			}	
 		}
 		
+		if(nameSearch) {
+		    return true;
+		}
+		
 		System.out.println("--------------------------------------");
 		System.out.println("請輸入你的食物種類：");
 		System.out.println("1.飯類  2.麵類  3.其他  0.不考慮食物種類");
@@ -210,113 +214,115 @@ public class SystemSearch {
 		for(Store s : listStore.values()) {
         	if (nameSearch) {
         		if(s.getName().equals(storename)){
-        			if (foodtypeSearch) {
-                		if(s.getFoodtype().equals(foodtype)){
-                			if (priceSearch) {
-                    			if(minimum_price <= s.getPrice() && s.getPrice() <= maximum_price) {
-                    				if (voteSearch) {
-                        				if(minimum_vote <= s.getVote() && s.getVote() <= maximum_vote) {
-                        					if (distanceSearch) {
-                            					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
-                            						System.out.println(s);
-                            						NotFound = false;
-                            					}
-                            				}else {
-                            					System.out.println(s);
-                        						NotFound = false;
-                            				}	
-                        				}
-                        			}else {
-                        				if (distanceSearch) {
-                        					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
-                        						System.out.println(s);
-                        						NotFound = false;
-                        					}
-                        				}else {
-                        					System.out.println(s);
-                    						NotFound = false;
-                        				}
-                        			}
-                    			}
-                    		}else {
-                    			if (voteSearch) {
-                    				if(minimum_vote <= s.getVote() && s.getVote() <= maximum_vote) {
-                    					if (distanceSearch) {
-                        					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
-                        						System.out.println(s);
-                        						NotFound = false;
-                        					}
-                        				}else {
-                        					System.out.println(s);
-                    						NotFound = false;
-                        				}	
-                    				}
-                    			}else {
-                    				if (distanceSearch) {
-                    					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
-                    						System.out.println(s);
-                    						NotFound = false;
-                    					}
-                    				}else {
-                    					System.out.println(s);
-                						NotFound = false;
-                    				}
-                    			}
-                    		}
-                		}
-                	}else {
-                		if (priceSearch) {
-                			if(minimum_price <= s.getPrice() && s.getPrice() <= maximum_price) {
-                				if (voteSearch) {
-                    				if(minimum_vote <= s.getVote() && s.getVote() <= maximum_vote) {
-                    					if (distanceSearch) {
-                        					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
-                        						System.out.println(s);
-                        						NotFound = false;
-                        					}
-                        				}else {
-                        					System.out.println(s);
-                    						NotFound = false;
-                        				}	
-                    				}
-                    			}else {
-                    				if (distanceSearch) {
-                    					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
-                    						System.out.println(s);
-                    						NotFound = false;
-                    					}
-                    				}else {
-                    					System.out.println(s);
-                						NotFound = false;
-                    				}
-                    			}
-                			}
-                		}else {
-                			if (voteSearch) {
-                				if(minimum_vote <= s.getVote() && s.getVote() <= maximum_vote) {
-                					if (distanceSearch) {
-                    					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
-                    						System.out.println(s);
-                    						NotFound = false;
-                    					}
-                    				}else {
-                    					System.out.println(s);
-                						NotFound = false;
-                    				}	
-                				}
-                			}else {
-                				if (distanceSearch) {
-                					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
-                						System.out.println(s);
-                						NotFound = false;
-                					}
-                				}else {
-                					System.out.println(s);
-            						NotFound = false;
-                				}
-                			}
-                		}
-                	}
+        		    System.out.println(s.getFullDes());
+        		    NotFound = false;
+//        			if (foodtypeSearch) {
+//                		if(s.getFoodtype().equals(foodtype)){
+//                			if (priceSearch) {
+//                    			if(minimum_price <= s.getPrice() && s.getPrice() <= maximum_price) {
+//                    				if (voteSearch) {
+//                        				if(minimum_vote <= s.getVote() && s.getVote() <= maximum_vote) {
+//                        					if (distanceSearch) {
+//                            					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
+//                            						System.out.println(s);
+//                            						NotFound = false;
+//                            					}
+//                            				}else {
+//                            					System.out.println(s);
+//                        						NotFound = false;
+//                            				}	
+//                        				}
+//                        			}else {
+//                        				if (distanceSearch) {
+//                        					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
+//                        						System.out.println(s);
+//                        						NotFound = false;
+//                        					}
+//                        				}else {
+//                        					System.out.println(s);
+//                    						NotFound = false;
+//                        				}
+//                        			}
+//                    			}
+//                    		}else {
+//                    			if (voteSearch) {
+//                    				if(minimum_vote <= s.getVote() && s.getVote() <= maximum_vote) {
+//                    					if (distanceSearch) {
+//                        					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
+//                        						System.out.println(s);
+//                        						NotFound = false;
+//                        					}
+//                        				}else {
+//                        					System.out.println(s);
+//                    						NotFound = false;
+//                        				}	
+//                    				}
+//                    			}else {
+//                    				if (distanceSearch) {
+//                    					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
+//                    						System.out.println(s);
+//                    						NotFound = false;
+//                    					}
+//                    				}else {
+//                    					System.out.println(s);
+//                						NotFound = false;
+//                    				}
+//                    			}
+//                    		}
+//                		}
+//                	}else {
+//                		if (priceSearch) {
+//                			if(minimum_price <= s.getPrice() && s.getPrice() <= maximum_price) {
+//                				if (voteSearch) {
+//                    				if(minimum_vote <= s.getVote() && s.getVote() <= maximum_vote) {
+//                    					if (distanceSearch) {
+//                        					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
+//                        						System.out.println(s);
+//                        						NotFound = false;
+//                        					}
+//                        				}else {
+//                        					System.out.println(s);
+//                    						NotFound = false;
+//                        				}	
+//                    				}
+//                    			}else {
+//                    				if (distanceSearch) {
+//                    					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
+//                    						System.out.println(s);
+//                    						NotFound = false;
+//                    					}
+//                    				}else {
+//                    					System.out.println(s);
+//                						NotFound = false;
+//                    				}
+//                    			}
+//                			}
+//                		}else {
+//                			if (voteSearch) {
+//                				if(minimum_vote <= s.getVote() && s.getVote() <= maximum_vote) {
+//                					if (distanceSearch) {
+//                    					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
+//                    						System.out.println(s);
+//                    						NotFound = false;
+//                    					}
+//                    				}else {
+//                    					System.out.println(s);
+//                						NotFound = false;
+//                    				}	
+//                				}
+//                			}else {
+//                				if (distanceSearch) {
+//                					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance) {
+//                						System.out.println(s);
+//                						NotFound = false;
+//                					}
+//                				}else {
+//                					System.out.println(s);
+//            						NotFound = false;
+//                				}
+//                			}
+//                		}
+//                	}
             	}
             }else {
             	if (foodtypeSearch) {
