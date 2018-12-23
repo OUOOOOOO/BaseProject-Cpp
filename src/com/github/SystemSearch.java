@@ -513,6 +513,7 @@ public class SystemSearch {
 	        		break;
 	            }else if(type == 2) {
 	            	System.out.println("返回主畫面");
+	            	
 	            	return;
 	            	
 	            }else{
