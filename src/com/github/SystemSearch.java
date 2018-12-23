@@ -452,6 +452,7 @@ public class SystemSearch {
             		}
             	}
             }
+        	
         }
 	}
 	
@@ -463,6 +464,8 @@ public class SystemSearch {
 		
 		
 		while(true) {
+			Scanner scan = new Scanner(System.in);
+			
 			boolean wantToSreach = this.setSearch();
 			if(wantToSreach) {
 				
@@ -477,11 +480,29 @@ public class SystemSearch {
 	        System.out.println("。");
 			this.Searching();
 			
+			if(nameSearch == false && idSearch == false && NotFound == false) {
+				System.out.println("是否要輸入編號查看店家的詳細資訊?");
+				System.out.println("1.是  2.否");
+				int type = scan.nextInt();
+				if(type == 1) {
+					System.out.println("--------------------------------------");
+	                System.out.println("請輸入店家編號：");
+	                storeid = scan.nextLine();
+	                storeid = scan.nextLine();
+	                
+					idSearch = true;
+					NotFound = true;
+					System.out.println("。");
+			        System.out.println("。");
+			        System.out.println("。");
+					this.Searching();
+				}
+			}
+			
 			if(NotFound) {
 				System.out.println("並沒有您所想要的店家。");
 			}
 			
-	        Scanner scan = new Scanner(System.in);
 	        System.out.println("是否要再次搜尋?");
 	        System.out.println("1.是 2.否");
 	        int type = scan.nextInt();
@@ -493,6 +514,7 @@ public class SystemSearch {
 	            }else if(type == 2) {
 	            	System.out.println("返回主畫面");
 	            	return;
+	            	
 	            }else{
 	            	System.out.println("您輸入的代號無效，請重新輸入");
 	            	System.out.println();
