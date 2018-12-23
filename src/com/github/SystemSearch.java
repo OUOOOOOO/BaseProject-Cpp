@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class SystemSearch {
     private Map<String, Store> listStore;
+    private String storeid;
     private String storename;
     private String foodtype;
     private int minimum_price;
@@ -22,6 +23,7 @@ public class SystemSearch {
     private boolean NotFound;
     
     private boolean nameSearch;
+    private boolean idSearch;
     private boolean foodtypeSearch;
     private boolean priceSearch;
     private boolean voteSearch;
@@ -44,13 +46,14 @@ public class SystemSearch {
 		String word;
 		int type = 0;
 		nameSearch = false;
+		idSearch = false;
 		foodtypeSearch = false;
 		priceSearch = false;
 		voteSearch = false;
 		distanceSearch = false;
 		
-		System.out.println("請問是否知道店家名稱?  (如果要退出搜尋請輸入 99)");
-		System.out.println("1.是 2.否");
+		System.out.println("要使用何種搜尋方式?");
+		System.out.println("1.店名 2.編號 3.其他 99.退出");
 		type = scan.nextInt();
 		while(true) {
 			if(type == 1) {
@@ -61,15 +64,22 @@ public class SystemSearch {
 				nameSearch = true;
 				break;
 			}else if(type == 2) {
+			    System.out.println("--------------------------------------");
+                System.out.println("請輸入店家編號：");
+                storeid = scan.nextLine();
+                storeid = scan.nextLine();
+                idSearch = true;
 				break;
-			}else if(type == 99) {
+			}else if(type == 3) {
+                break;
+            }else if(type == 99) {
 				return false;
 				
 			}else {
 				System.out.println("您輸入的代碼無效，請重新輸入");
 				System.out.println();
-				System.out.println("是否知道店家名稱?  (如果要退出搜尋請輸入 99)");
-				System.out.println("1.是 2.否");
+				System.out.println("要使用何種搜尋方式?");
+		        System.out.println("1.店名 2.編號 3.其他 99.退出");
 				type = scan.nextInt();
 			}	
 		}
@@ -77,6 +87,10 @@ public class SystemSearch {
 		if(nameSearch) {
 		    return true;
 		}
+		
+		if(idSearch) {
+            return true;
+        }
 		
 		System.out.println("--------------------------------------");
 		System.out.println("請輸入你的食物種類：");
@@ -324,6 +338,11 @@ public class SystemSearch {
 //                		}
 //                	}
             	}
+            }else if(idSearch){
+                if(s.getStoreID().equals(storeid)){
+                    System.out.println(s.getFullDes());
+                    NotFound = false;
+                }
             }else {
             	if (foodtypeSearch) {
             		if(s.getFoodtype().equals(foodtype)){
