@@ -27,6 +27,7 @@ public class SystemManage {
 		
 		if(inputI == 1) {
 			
+			System.out.println("Guest login success.");
 			control = false;
 			
 		}
@@ -50,6 +51,7 @@ public class SystemManage {
 					
 					if(inputPasswd.equals("123456")) {
 						
+						System.out.println("Login success.");
 						control = true;
 						
 					}
@@ -57,7 +59,7 @@ public class SystemManage {
 					else {
 						
 						System.out.println("Error: Wrong Password");
-						System.exit(0);
+						control = false;
 						
 					}
 					
@@ -66,7 +68,7 @@ public class SystemManage {
 				else {
 					
 					System.out.println("Error: Wrong UserName");
-					System.exit(0);
+					control = false;
 					
 				}
 			}

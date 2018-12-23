@@ -1,6 +1,7 @@
 package com.github;
 
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     
@@ -24,21 +25,54 @@ public class Main {
     
     public void init() {
         systemInfo = new SystemInfo();
-        
-        System.out.println("Create SystemInfo");
-        
         systemInfo.init();
-        
         systemInfo.showStore();
         
+        System.out.println("--------------------------------------");
+        
         systemManage = new SystemManage();
-        systemManage.login();
+        boolean member = systemManage.login();
         
-        systemSearch = new SystemSearch(systemInfo.getListStore());
-        systemSearch.Search();
-        
-        systemRank = new SystemRank(systemInfo.getListStore());
-        systemRank.getRanking();
+        if(member) {
+        	systemSearch = new SystemSearch(systemInfo.getListStore());
+        	systemRank = new SystemRank(systemInfo.getListStore());
+        }else {
+        	systemSearch = new SystemSearch(systemInfo.getListStore());
+        }
+        Scanner scan = new Scanner(System.in);
+        while(true) {
+        	System.out.println("--------------------------------------");
+        	if(member) {
+        		System.out.println("1.搜尋");
+        		System.out.println("2.排行榜");
+        		System.out.print("請輸入想要使用的功能：");
+        	}else {
+        		System.out.println("1.搜尋");
+        		System.out.print("請輸入想要使用的功能：");
+        	}
+        	int type = scan.nextInt();
+        	while(true) {
+        		if(type == 1) {
+        			System.out.println("--------------------------------------");
+        			systemSearch.Search();
+        			break;
+        		}else if (type == 2 && member) {
+        			System.out.println("--------------------------------------");
+        			systemRank.getRanking();
+        			break;
+        		}else if(type == 2) { //member == flase
+        			System.out.println("您並非會員，無法使用此功能。");
+        			System.out.println();
+        			System.out.print("請輸入想要使用的功能：");
+        			type = scan.nextInt();
+        		}else {
+        			System.out.println("無效的代碼，請重新輸入。");
+        			System.out.println();
+        			System.out.print("請輸入想要使用的功能：");
+        			type = scan.nextInt();
+        		}
+        	}
+        }
     }
 
 

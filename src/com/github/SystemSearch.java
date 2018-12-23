@@ -39,7 +39,7 @@ public class SystemSearch {
         this.listStore = listStore;
 	}
 	
-	public void setSearch() {
+	public boolean setSearch() {
 		Scanner scan = new Scanner(System.in);
 		String word;
 		int type = 0;
@@ -63,7 +63,8 @@ public class SystemSearch {
 			}else if(type == 2) {
 				break;
 			}else if(type == 99) {
-				System.out.println("返回主畫面");
+				return false;
+				
 			}else {
 				System.out.println("您輸入的代碼無效，請重新輸入");
 				System.out.println();
@@ -93,7 +94,7 @@ public class SystemSearch {
 			}else if(type == 0) {
 				break;
 			}else if(type == 99) {
-				System.out.println("返回主畫面");
+				return false;
 			}else {
 				System.out.println("您輸入的代碼無效，請重新輸入");
 				System.out.println();
@@ -126,7 +127,7 @@ public class SystemSearch {
 			}else if(type == 0) {
 				break;
 			}else if(type == 99) {
-				System.out.println("返回主畫面");
+				return false;
 			}else {
 				System.out.println("您輸入的代碼無效，請重新輸入");
 				System.out.println();
@@ -159,7 +160,7 @@ public class SystemSearch {
 			}else if(type == 0) {
 				break;
 			}else if(type == 99) {
-				System.out.println("返回主畫面");
+				return false;
 			}else {
 				System.out.println("您輸入的代碼無效，請重新輸入");
 				System.out.println();
@@ -192,7 +193,8 @@ public class SystemSearch {
 			}else if(type == 0) {
 				break;
 			}else if(type == 99) {
-				System.out.println("返回主畫面");
+				return false;
+				
 			}else {
 				System.out.println("您輸入的代碼無效，請重新輸入");
 				System.out.println();
@@ -201,36 +203,11 @@ public class SystemSearch {
 				type = scan.nextInt();
 			}	
 		}
+		return true;
 	}
-
 	
-	public void Search() {
-		System.out.println("start search.");
-		this.setSearch();
-        NotFound = true;
-		
-		
-        if(listStore.isEmpty()) {
-        	System.out.println("I can't do it.");
-            return;
-        }
-        
-//        for(Store s : listStore.values()) {
-//        	if(s.getName().equals(storename) && nameSearch) {
-//        		if(s.getFoodtype().equals(foodtype) && foodtypeSearch) {
-//        			if(minimum_price <= s.getPrice() && s.getPrice() <= maximum_price && priceSearch) {
-//        				if(minimum_vote <= s.getVote() && s.getVote() <= maximum_vote && voteSearch) {
-//        					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance && distanceSearch) {
-//        						System.out.println(s);
-//        						NotFound = false;
-//        					}	
-//        				}
-//        			}
-//        		}
-//        	}
-//        }
-        
-        for(Store s : listStore.values()) {
+	public void Searching() {
+		for(Store s : listStore.values()) {
         	if (nameSearch) {
         		if(s.getName().equals(storename)){
         			if (foodtypeSearch) {
@@ -451,11 +428,66 @@ public class SystemSearch {
             	}
             }
         }
-        
-        
-        if(NotFound) {
-        	System.out.println("Not found.");
-        	setSearch();
+	}
+	
+	public void Search() {
+		if(listStore.isEmpty()) {
+        	System.out.println("並沒有任何店家資訊。");
+            return;
         }
-    }
+		
+		
+		while(true) {
+			boolean wantToSreach = this.setSearch();
+			if(wantToSreach) {
+				
+			}else {
+				System.out.println("返回主畫面");
+				return;
+			}
+			
+	        NotFound = true;
+	        System.out.println("。");
+	        System.out.println("。");
+	        System.out.println("。");
+			this.Searching();
+			
+			if(NotFound) {
+				System.out.println("並沒有您所想要的店家。");
+			}
+			
+	        Scanner scan = new Scanner(System.in);
+	        System.out.println("是否要再次搜尋?");
+	        System.out.println("1.是 2.否");
+	        int type = scan.nextInt();
+		    
+	        while(true) {
+	        	if(type == 1) {
+	        		System.out.println("--------------------------------------");
+	        		break;
+	            }else if(type == 2) {
+	            	System.out.println("返回主畫面");
+	            	return;
+	            }else{
+	            	System.out.println("您輸入的代號無效，請重新輸入");
+	            	System.out.println();
+	            }
+	        }
+		}
+    }    
+//        for(Store s : listStore.values()) {
+//        	if(s.getName().equals(storename) && nameSearch) {
+//        		if(s.getFoodtype().equals(foodtype) && foodtypeSearch) {
+//        			if(minimum_price <= s.getPrice() && s.getPrice() <= maximum_price && priceSearch) {
+//        				if(minimum_vote <= s.getVote() && s.getVote() <= maximum_vote && voteSearch) {
+//        					if(minimum_distance <= s.getLocation() && s.getLocation() <= maximum_distance && distanceSearch) {
+//        						System.out.println(s);
+//        						NotFound = false;
+//        					}	
+//        				}
+//        			}
+//        		}
+//        	}
+//        }
+        
 }

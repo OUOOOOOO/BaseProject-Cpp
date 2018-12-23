@@ -86,6 +86,9 @@ public class Store {
 
     @Override
     public String toString() {
-        return "Store [storeID=" + storeID + ", name=" + name + ", location=" + location + "]";
+    	String str = null;
+    	str = String.format("(%3s) %8s %-9s 基$%-3s 蝶基%.1f 籔禯瞒 %3sm", storeID,"[" + foodtype + "]",name,price,vote,location);
+        return str;
+//        		"(" + storeID + ") [" + foodtype + "]  " + name + "  基 $" + price + "  蝶基" + vote +   " 籔禯瞒 " + location + "m";
     }
 }
