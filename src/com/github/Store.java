@@ -48,10 +48,10 @@ public class Store {
     public Store(String storeID, String name) {
         this.storeID = storeID;
         this.name = name;
-        this.location = (int) (Math.random()*1000);
+        this.location = (int) (Math.random()*300);
         this.foodtype = FoodType.random().getName();
-        this.price = (int) (Math.random()*99 + 1)*10;
-        this.vote = Math.random()*10;
+        this.price = (int) (Math.random()*30 + 1)*10;
+        this.vote = Math.random()*5;
         this.Business_Hours = new int[2];
         this.Business_Hours[0] = (int) (Math.random()*24);
         this.Business_Hours[1] = (int) (Business_Hours[0] + 8);
