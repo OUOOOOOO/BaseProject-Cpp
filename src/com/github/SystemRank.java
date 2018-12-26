@@ -31,18 +31,17 @@ public class SystemRank {
 			}
     	getftype();
     	getfrank();
-    	showfrank();
     	searchShop();
     	//System.out.println("Finish.");
     }
     
     public void getftype() {
         foodlist.clear();
-    	System.out.println("請輸入食物種類代號:  (1: noodle  2: rice  3: others)");
+    	System.out.println("請輸入食物種類代號:  (1: 麵食  2: 飯類  3: 其他)");
     	int ftype = scan.nextInt();
     	while ((ftype < 1) || (ftype > 3))
     	{
-    		System.out.println("Please enter again:  (1: noodle  2: rice  3: others)");
+    		System.out.println("Please enter again:  (1: 麵食  2: 飯類  3: 其他)");
     		ftype = scan.nextInt();
     	}
 
@@ -78,10 +77,10 @@ public class SystemRank {
         	System.out.println("There's no that kind of store.");
         	return;
         }
-    	System.out.println("請輸入排序依據；  (1: vote  2: price  3: distance)");
+    	System.out.println("請輸入排序依據；  (1: 評價  2: 價位  3: 距離)");
     	int frank = scan.nextInt();
     	while ((frank < 1) || (frank > 3)){
-    		System.out.println("Please enter again；  (1: vote  2: price  3: distance)");
+    		System.out.println("Please enter again；  (1: 評價  2: 價位  3: 距離)");
     		frank = scan.nextInt();
     	}
       
@@ -94,6 +93,7 @@ public class SystemRank {
     			}
     		}
     		}
+    		showvoterank();
 
     	}
     	else if (frank == 2){
@@ -105,7 +105,7 @@ public class SystemRank {
     			}
     		}
     		}
-
+    		showpricerank();
     	}
     	else if (frank == 3){
     		for (int j=0; j<foodlist.size(); j++)
@@ -113,42 +113,76 @@ public class SystemRank {
     			for (int i=0 ; i < foodlist.size()-1; i++ ) {
     			int a = Math.abs(foodlist.get(i).getLocation());
     			int b = Math.abs(foodlist.get(i+1).getLocation());
-    			//System.out.println(a +" and "+ b);
     			if (a > b) {
     				Collections.swap(foodlist, i, i+1);
     			}
     		}
     		}
-
+    		showdistancerank();
     	}
     	
     }
     
-    public void showfrank() {
+    public void showvoterank() {
     	
         if(foodlist.isEmpty()) {
         	return;
         }
     	for (int i=0 ; i < foodlist.size(); i++ ) {
-    			System.out.println(i+1 +": ID= " + foodlist.get(i).getStoreID()+"      Name= " + foodlist.get(i).getName());
+    			System.out.println(i+1 +": 編號  " + foodlist.get(i).getStoreID()+"   店名  " + foodlist.get(i).getName()+ "   評價  "+foodlist.get(i).getVote());
 			}
     }
+    
+    public void showpricerank() {
+    	
+        if(foodlist.isEmpty()) {
+        	return;
+        }
+    	for (int i=0 ; i < foodlist.size(); i++ ) {
+    			System.out.println(i+1 +": 編號  " + foodlist.get(i).getStoreID()+"   店名  " + foodlist.get(i).getName()+ "   價位  "+foodlist.get(i).getPrice());
+			}
+    }
+    
+    public void showdistancerank() {
+    	
+        if(foodlist.isEmpty()) {
+        	return;
+        }
+    	for (int i=0 ; i < foodlist.size(); i++ ) {
+    			System.out.println(i+1 +": 編號  " + foodlist.get(i).getStoreID()+"   店名  " + foodlist.get(i).getName()+ "   距離  "+foodlist.get(i).getLocation());
+			}
+    }
+    
     public void searchShop() {
     	String ID;
-    	SystemSearch search = new SystemSearch(Main.getInstance().systemInfo.getListStore());
+    	boolean nosearch = true;
         if(foodlist.isEmpty()) {
         	return;
         }
         else {
-        	System.out.println("Enter Store ID for more information:  \nEnter 0 to exit.");
+        	System.out.println("輸入編號查看店家的詳細資訊:  \n輸入99即可退出。");
         	ID = scan.next();
-        	if (ID =="0") {
+        	//System.out.println(ID);
+        	
+        	if (ID.equals("99")){
         		return;
-        	}
-//        	search.setSearch();
-//        	search.Search();
+        	}         	
+        	else { 
+        		for (int i=0 ; i < foodlist.size(); i++ ) {
+        			Store s = foodlist.get(i);
+        			if (ID.equals(s.getStoreID())){
+        				System.out.println(s.getFullDes());
+        				nosearch = false;
+        				return;
+        			}
+        		}
+        		if (nosearch) {
+        			System.out.println("沒有您想要的店家。");
+        		}
+        }
         }
     }
-
 }
+
+
     
